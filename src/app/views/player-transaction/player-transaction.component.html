@@ -1,0 +1,70 @@
+
+<div class="text-center m-2">
+    <h3 *ngIf="recordFetchedFlag"> Create Transaction for {{playerDetails.name}} </h3>
+</div>
+
+<form #TransactionForm = ngForm  (submit)="postTransaction()">
+    <div class="row">
+        <div class="col-lg-6 col-md-6 text-center">
+            <mat-form-field appearance="outline" class="m-auto">
+                <mat-label>Date of Transaction</mat-label>
+                <input 
+                matInput
+                required
+                type="date"
+                name="transactionDate"
+                #transactionDate = "ngModel"
+                [(ngModel)]="transactionRecord.transactionDate">
+                <mat-error *ngIf="transactionDate.invalid">Required</mat-error>
+            </mat-form-field>
+        </div>
+    
+        <div class="col-lg-6 col-md-6 float-start">
+            <mat-form-field appearance="outline" class="m-auto">
+                <mat-label>Amount</mat-label>
+                <input 
+                matInput
+                required
+                type="number" 
+                name="amount"
+                #amount = "ngModel"
+                [(ngModel)]="transactionRecord.amount">
+                <mat-error *ngIf="amount.invalid">Required</mat-error>
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div class="row m-auto" style="width: 68vw;">    
+        <mat-form-field appearance="outline">
+            <mat-label>Message</mat-label>
+            <input 
+            matInput
+            required
+            type="text" 
+            name="message"
+            #message = "ngModel"
+            [(ngModel)]="transactionRecord.message">
+            <mat-error *ngIf="message.invalid">Required</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Type</mat-label>
+            <mat-select 
+                required
+                name = "transactionType"
+                #transactionType = "ngModel"
+                [(ngModel)]="transactionRecord.transactionType">
+                <mat-option value="Credit">Credit</mat-option>
+                <mat-option value="Debit"> Debit</mat-option>
+            </mat-select>
+            <mat-error *ngIf="transactionType.invalid">Required</mat-error>
+        </mat-form-field>
+    </div>
+    <div class="row">
+        <div class="col-6 text-end">
+            <input type="submit" class="btn btn-warning float-end" [disabled]="TransactionForm.invalid">
+        </div>
+        <div class="col-6 text-start">
+            <input type="reset" class="btn btn-warning">
+        </div>
+    </div>
+</form>

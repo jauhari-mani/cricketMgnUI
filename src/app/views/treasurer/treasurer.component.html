@@ -1,0 +1,86 @@
+<div class="col-10 m-auto p-auto">
+    <mat-tab-group mat-tab-stretch>
+
+        <!-- Transactions -->
+        <mat-tab label="Transactions">
+            <div class="m-4">
+                <p class="text-success h3">Balance : 100000</p>
+                <p class="text-danger h3">To be collected : 100000</p>
+            </div>
+            <button class="btn btn-outline-primary btn-lg mx-4" (click)="redirectToTransactionPage()">Create Transaction</button>
+            <div style=" height: 58vh; overflow: scroll;">
+                <table class="table table-bordered table-hover table-responsive-sm overflow-scroll mt-4">
+                    <thead>
+                        <tr>
+                            <th scope="col">Transaction Id</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Message</th>
+                            <th scope="col">Amount</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                    
+                    </tbody>
+                    
+                </table>
+            </div>
+        </mat-tab>
+
+
+        <!-- Photo Upload -->
+        <mat-tab label="Photos">
+            <form (submit)="formSubmit()">
+            <table id="uploadPhotoTable">
+                <tr>
+                    <td>
+                        <label class="label">Upload Photo</label>
+                    </td>
+                    <td>
+                        <input type="file" class="form-control-file" (change)="imageUpload($event)">
+                    </td>
+                </tr>
+                <tr>
+                    <input type="submit" value="Upload" class="btn btn-outline-success">
+                </tr>
+            </table>
+            </form>
+
+            <div style=" height: 58vh; overflow: scroll;">
+
+                <table class="table table-bordered table-hover table-responsive-sm mt-4">
+                    <thead>
+                        <tr>
+                            <th scope="col">Photo</th>
+                            <th scope="col">Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let files of filesArray">
+                            <td>
+                                <img [src]="files.url" [alt]="files.name">
+                            </td>
+                            <td>
+                                <button class="btn btn-outline-danger" (click)="deleteImage(files.name)"> Delete </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </mat-tab>
+
+        <!-- Content -->
+        <mat-tab label="Home page">
+            <table class="m-auto p-auto">
+                <tr>
+                    <td>Content</td>
+                </tr>
+                <tr>
+                    <td>
+                        <textarea id="homePageContent" placeholder="Home page content"></textarea>
+                    </td>
+                </tr>
+            </table>
+        </mat-tab>
+    </mat-tab-group>
+</div>

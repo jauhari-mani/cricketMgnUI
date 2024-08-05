@@ -1,0 +1,73 @@
+<h2 class="text-center"> Match Overview </h2>
+
+<div class="col-8 m-auto">
+    <dl class="row">
+        <dt class="col-sm-3">Play Ground</dt>
+        <dd class="col-sm-9">{{match.playGround}}</dd>
+
+        <dt class="col-sm-3">Date Of Match</dt>
+        <dd class="col-sm-9">{{match.dateOfMatch}}</dd>
+
+        <dt class="col-sm-3"> Total Match Fee</dt>
+        <dd class="col-sm-9">{{match.totalFees}}</dd>
+        
+        <dt class="col-sm-3"> Car Compensation </dt>
+        <dd class="col-sm-9">{{match.carCompensation}}</dd>
+
+        <dt class="col-sm-3"> Player Fees </dt>
+        <dd class="col-sm-9">{{match.perPersonContribution}}</dd>
+    </dl>
+</div>
+
+<div class="col-8 m-auto">
+    <mat-tab-group mat-stretch-tabs>
+
+        <mat-tab label="Players">
+            <table class="table table-bordered table-hover mt-4">
+                <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Phone Number</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Balance</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let player of match.playersPlayed">
+                        <td>{{player.id}}</td>
+                        <td>{{player.name}}</td>
+                        <td>{{player.phnNumber}}</td>
+                        <td>{{player.email}}</td>
+                        <td>{{player.wallet}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </mat-tab>
+
+            <mat-tab label="Cars">
+                <table class="table table-bordered table-hover mt-4">
+                    <thead>
+                        <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Phone Number</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Balance</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let player of match.playersWhoTookTheirCar">
+                            <td>{{player.id}}</td>
+                            <td>{{player.name}}</td>
+                            <td>{{player.phnNumber}}</td>
+                            <td>{{player.email}}</td>
+                            <td>{{player.wallet}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </mat-tab>
+
+    </mat-tab-group>
+
+</div>

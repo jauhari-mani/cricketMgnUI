@@ -1,0 +1,17 @@
+<div class="row">
+    <h3 class="col-4 text-center m-4">Want to increase players</h3>
+    <button class="col-4 btn btn-primary m-4" routerLink="../addPlayer">Add Player</button>
+</div>
+
+<div class="col-8 m-auto">
+  <mat-form-field appearance="outline" class="col-12">
+      <mat-label>Search</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Search" #input>
+  </mat-form-field>
+</div>
+
+<div fxLayout="row wrap" fxLayoutGap="8px grid">
+  <div fxFlex="33%" fxFlex.xs="100%" fxFlex.sm="50%" fxFlex.md="33%" *ngFor="let player of copyOfList">      
+    <app-player-tile [playerDetails]="player"></app-player-tile> 
+  </div>
+</div>

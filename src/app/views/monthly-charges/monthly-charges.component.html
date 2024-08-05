@@ -1,0 +1,82 @@
+<mat-stepper>
+    <mat-step [editable]="true" [completed]="monthlyChargeForm.valid && formFiled(monthlyChargeForm.value)">
+        <ng-template matStepLabel>Monthly Charges</ng-template>    
+        <form #monthlyChargeForm = ngForm>
+                <div class="row m-auto p-auto">
+                    <div class="col-lg-6 col-md-6 m-auto p-auto">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Month</mat-label>
+                          <input
+                            matInput
+                            required
+                            type="month"
+                            name="month"
+                            placeholder=""
+                            #month = "ngModel"
+                            ngModel>
+                            <mat-error>Required</mat-error>
+                        </mat-form-field>
+                    </div> 
+                    <div class="col-lg-6 col-md-6 m-auto p-auto">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Mothly Charges</mat-label>
+                          <input
+                            matInput
+                            required
+                            type="number"
+                            name="monthlyCharges"
+                            #monthlyCharges = "ngModel"
+                            ngModel>
+                            <mat-error>Required</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <button class="btn btn-warning float-end m-2" 
+                matStepperNext>Next</button>
+                <input type="reset" class="btn btn-warning float-end m-2">
+        </form>
+    </mat-step>
+    <mat-step [editable]="true" [completed]="true">
+        <ng-template matStepLabel>Select Active Players</ng-template>
+        <app-select-active-players-for-monthly-charges [monthlyCharges]="monthlyObject"></app-select-active-players-for-monthly-charges>
+        <button mat-button matStepperNext class="btn btn-warning float-end m-2">Next</button>
+        <button mat-button matStepperPrevious class="btn btn-warning float-end m-2">Back</button>
+    </mat-step>
+    <mat-step>
+        <ng-template matStepLabel>Overview</ng-template>
+            <h2 class="text-center">Monthly Charges Overview</h2>
+            <div class="col-8 m-auto">
+                <dl class="row">
+                    <dt class="col-sm-3">Month : </dt>
+                    <dd class="col-sm-9">{{monthlyObject.month}}</dd>
+
+                    <dt class="col-sm-3">Amount : </dt>
+                    <dd class="col-sm-9">{{monthlyObject.charges}}</dd>
+                </dl>
+            </div>
+            <div class="col-8 m-auto">
+                <table class="table table-bordered table-hover mt-4">
+                    <thead>
+                        <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Phone Number</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Balance</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let player of monthlyObject.activePlayers">
+                            <td>{{player.id}}</td>
+                            <td>{{player.name}}</td>
+                            <td>{{player.phnNumber}}</td>
+                            <td>{{player.email}}</td>
+                            <td>{{player.wallet}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <button mat-button class="btn btn-warning float-end m-2">Submit</button>
+            <button mat-button matStepperPrevious class="btn btn-warning float-end m-2">Back</button>
+    </mat-step>   
+</mat-stepper>

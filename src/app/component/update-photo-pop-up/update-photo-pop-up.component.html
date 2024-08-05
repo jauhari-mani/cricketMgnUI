@@ -1,0 +1,12 @@
+<h2 mat-dialog-title>Upload Player Photo</h2>
+<mat-dialog-content class="mat-typography">
+  <input
+    type="file"
+    name="image"
+    class="m-2"
+    (change)="readImage($event)">
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button [mat-dialog-close]="image" cdkFocusInitial>Upload Image</button>
+</mat-dialog-actions>

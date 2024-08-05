@@ -1,0 +1,46 @@
+<div class="row row-cols-sm-1">
+
+    <!-- ALL PLAYERS -->
+    <div class="col-lg-6 col-sm-12 p-2">
+        <mat-card  style="overflow-y: scroll; height: 87.3vh;">
+
+            <mat-card-header>
+                <mat-card-title>All players</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <div fxLayout="row wrap" fxLayoutGap="16px grid">
+                    <div fxFlex="50%" fxFlex.xs="100%" fxFlex.sm="50%" *ngFor="let players of players">  
+                        <mat-card class="mat-elevation-z4">
+                            <app-player-for-selection [playerDetails]="players"></app-player-for-selection>
+                            <mat-divider inset></mat-divider>
+                            <mat-card-actions class="mx-1">
+                                    <mat-slide-toggle (toggleChange)="addCars(players)"></mat-slide-toggle>
+                            </mat-card-actions>
+                        </mat-card>    
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+
+    </div>
+
+     <!-- SELECTED PLAYERS -->
+     <div class="col-lg-6 col-sm-12 p-2" >
+        <mat-card style="overflow-y: scroll; height: 87.3vh;">
+            <mat-card-header>
+                <mat-card-title>
+                    Cars Driven in Match
+                </mat-card-title>
+            </mat-card-header>
+
+            <mat-card-content>
+                <div fxLayout="row wrap" fxLayoutGap="16px grid">
+                    <div fxFlex="50%" fxFlex.xs="100%" fxFlex.sm="50%" *ngFor="let player of match.playersWhoTookTheirCar">     
+                        <app-player-for-selection [playerDetails]="player"></app-player-for-selection>
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+         
+</div>

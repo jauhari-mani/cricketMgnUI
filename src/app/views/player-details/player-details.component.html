@@ -1,0 +1,110 @@
+<mat-card class="mat-elevation-z2 m-3" style="height: fit-content;">
+    <mat-card-header>
+        <mat-card-title-group class="col-10" *ngIf="playerRecordFetched">
+            <img mat-card-md-image *ngIf="image != undefined && image.size > 18" [src]="playerPhoto" alt="profile picture" class="img-thumbnail rounded float-left">
+            <img mat-card-md-image *ngIf="image == undefined || image.size == 18" src="../assets/PT logo.jpeg" alt="PT logo" class="img-thumbnail rounded float-left">
+            <mat-card-title>{{playerDetails.name}}</mat-card-title>
+            <mat-card-subtitle>{{playerDetails.email}}</mat-card-subtitle>
+            <mat-card-subtitle> +91 {{playerDetails.phnNumber}}</mat-card-subtitle>
+            <mat-card-subtitle *ngIf="playerDetails.wallet >= 0" class="text-success h3">Balance : {{playerDetails.wallet}}</mat-card-subtitle>
+            <mat-card-subtitle *ngIf="playerDetails.wallet < 0" class="text-danger h3">Balance : {{playerDetails.wallet}}</mat-card-subtitle>
+            <mat-card-subtitle class="row">
+                <button class="btn btn-outline-dark col-3 m-2" (click)="redirectToEditPage()">Edit</button>
+                <button class="btn btn-outline-info col-7 m-2" (click)="redirectToTransactionPage()">Transaction</button>
+            </mat-card-subtitle>
+        </mat-card-title-group>
+    </mat-card-header>
+    <mat-card-content>
+
+        <div class="col-12 m-auto">
+            <mat-tab-group mat-stretch-tabs>
+
+            <mat-tab label="Matches">
+                <div style=" height: 58vh; overflow: scroll;">
+
+                    <table class="table table-bordered table-hover table-responsive-sm mt-4">
+                        <thead>
+                            <tr>
+                                <th scope="col">Match Id</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">Play Ground</th>
+                                <th scope="col">Match Fees</th>
+                                <th scope="col">Per Match</th>
+                            </tr>
+                        </thead>
+                        
+                        <tbody>
+                            <tr *ngFor="let match of matches">
+                                <td>{{match.matchId}}</td>
+                                <td>{{match.dateOfMatch}}</td>
+                                <td>{{match.playGround}}</td>
+                                <td>{{match.totalFees}}</td>
+                                <td>{{match.perPersonContribution}}</td>
+                            </tr>
+                        </tbody>
+                        
+                    </table>
+                </div>
+                </mat-tab>
+
+            <mat-tab label="Transactions">
+                <div style=" height: 58vh; overflow: scroll;">
+                    <table class="table table-bordered table-hover table-responsive-sm overflow-scroll mt-4">
+                        <thead>
+                            <tr>
+                                <th scope="col">Transaction Id</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">Message</th>
+                                <th scope="col">Amount</th>
+                            </tr>
+                        </thead>
+
+                        <tbody *ngFor="let transaction of transactions">
+                            <tr *ngIf="transaction.transactionType == 'Credit'" class="text-success">
+                                <td scope="col">{{transaction.id}}</td>
+                                <td scope="col">{{transaction.transactionDate}}</td>
+                                <td scope="col">{{transaction.message}}</td>
+                                <td scope="col">{{transaction.amount}}</td>
+                            </tr>
+                            <tr *ngIf="transaction.transactionType == 'Debit'" class="text-danger">
+                                <td scope="col">{{transaction.id}}</td>
+                                <td scope="col">{{transaction.transactionDate}}</td>
+                                <td scope="col">{{transaction.message}}</td>
+                                <td scope="col">{{transaction.amount}}</td>
+                            </tr>
+                        </tbody>
+                        
+                    </table>
+                </div>
+                </mat-tab>
+                
+                <mat-tab label="Cars">
+                <div style=" height: 58vh; overflow: scroll;">
+                    <table class="table table-bordered table-hover table-responsive-sm overflow-scroll mt-4">
+                        <thead>
+                            <tr>
+                                <th scope="col">Match Id</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">Play Ground</th>
+                                <th scope="col">Car Compensation</th>
+                            </tr>
+                        </thead>
+                        
+                        <tbody>
+                            <tr *ngFor="let car of cars">
+                                <td>{{car.matchId}}</td>
+                                <td>{{car.dateOfMatch}}</td>
+                                <td>{{car.playGround}}</td>
+                                <td>{{car.carCompensation}}</td>
+                            </tr>
+                        </tbody>
+                        
+                    </table>
+                </div>
+            </mat-tab>
+                
+        </mat-tab-group>
+        </div>
+
+    </mat-card-content>
+</mat-card>

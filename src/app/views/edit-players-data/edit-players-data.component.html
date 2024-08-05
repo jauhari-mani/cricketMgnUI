@@ -1,0 +1,84 @@
+<mat-card>
+
+    <div class="row">
+      <div class="col-6 text-center">
+        <img *ngIf="image != undefined && image.size > 18" [src]="playerPhoto" alt="Player Photo">
+        <img  *ngIf="image == undefined || image.size == 18" [src]="img" alt="No Image Uploaded">
+        <br>
+        <div class="text-center">
+          <button (click)="OpenDialog('500ms', '500ms')" class="m-2" mat-raised-button color="primary">Update Image</button>
+        </div>
+      </div>
+  
+      <div class="col-6 m-auto">
+  
+        <form #PlayerDetailsForm = ngForm class="m-auto">
+            <!-- First Name Input -->
+            <mat-form-field appearance="outline">
+              <mat-label>Name</mat-label>
+              <input
+                matInput
+                type="text"
+                placeholder="Name"
+                required
+                name="name"
+                #firstName = "ngModel"
+                [(ngModel)]="playerDetails.name">
+              <mat-icon matSuffix>perm_identity</mat-icon>
+              <mat-error
+                *ngIf="firstName.invalid">
+                Name is required
+              </mat-error>
+            </mat-form-field>
+            <br>
+        
+            <!-- Phone Number Input -->
+            <mat-form-field appearance="outline">
+              <mat-label>Mobile Number</mat-label>
+              <input
+                matInput
+                type="number"
+                placeholder="Mobile Number"
+                required
+                minlength="10"
+                maxlength="10"
+                name="mobileNumber"
+                #mobileNumber="ngModel"
+                [(ngModel)]="playerDetails.phnNumber">
+              <mat-icon matSuffix>phone_android</mat-icon>
+              <mat-error
+                *ngIf="mobileNumber.invalid">
+                Mobile Number is required
+              </mat-error>
+            </mat-form-field>
+            <br>
+      
+            <!-- Email Input -->
+            <mat-form-field appearance="outline">
+              <mat-label>Email</mat-label>
+              <input
+                matInput
+                type="email"
+                placeholder="Email"
+                required
+                name="emailId"
+                #emailId="ngModel"
+                [(ngModel)]="playerDetails.email">
+                <mat-error *ngIf="emailId.invalid">Email is required</mat-error>
+              <mat-icon matSuffix>email</mat-icon>
+            </mat-form-field>
+            <br>
+          </form>
+        </div>
+        <button
+          mat-raised-button
+          color="accent"
+          class="btn btn-block btn-lg col-10 mt-2 mx-auto"
+          (click)="Register()">
+          Save Changes
+        </button>
+    </div>
+  
+  
+  </mat-card>
+  

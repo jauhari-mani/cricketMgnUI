@@ -1,0 +1,53 @@
+
+<div class="text-center m-2">
+    <h3> Transaction by Treasurer </h3>
+</div>
+
+<form #TransactionForm = ngForm>
+    <div class="row">
+        <div class="col-lg-6 col-md-6 text-center">
+
+            <mat-form-field appearance="outline" class="m-auto">
+                <mat-label>Date of Transaction</mat-label>
+                <input 
+                matInput
+                required
+                type="date"
+                name="dateOfTransaction">
+                <mat-error>Required</mat-error>
+            </mat-form-field>
+        </div>
+    
+        <div class="col-lg-6 col-md-6 float-start">
+            <mat-form-field appearance="outline" class="m-auto">
+                <mat-label>Amount</mat-label>
+                <input 
+                matInput
+                required
+                type="number" 
+                name="amount">
+                <mat-error>Required</mat-error>
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div class="row m-auto" style="width: 68vw;">    
+        <mat-form-field appearance="outline">
+            <mat-label>Message</mat-label>
+            <input 
+            matInput
+            required
+            type="text" 
+            name="msg">
+            <mat-error>Required</mat-error>
+        </mat-form-field>
+    </div>
+    <div class="row">
+        <div class="col-6 text-end">
+            <input type="submit" class="btn btn-warning float-end">
+        </div>
+        <div class="col-6 text-start">
+            <input type="reset" class="btn btn-warning">
+        </div>
+    </div>
+</form>

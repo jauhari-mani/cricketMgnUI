@@ -1,0 +1,91 @@
+<mat-stepper linear #stepper>
+    
+    <mat-step [editable]="true" [completed]="matchForm.valid && matchDetailsForm(matchForm.value)">
+        <ng-template matStepLabel>Match Details</ng-template>
+        <form #matchForm = ngForm>
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Date of Match</mat-label>
+                      <input
+                        matInput
+                        required
+                        type="date"
+                        name="dateOfMatch"
+                        #dateOfMatch = "ngModel"
+                        ngModel>
+                        <mat-error>Required</mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Total Match Fees</mat-label>
+                      <input
+                        matInput
+                        required
+                        type="number"
+                        placeholder="Total Match Fees"
+                        name="totalMatchFees"
+                        #totalMatchFees = "ngModel"
+                        ngModel>
+                        <mat-error>Required</mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+    
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Car Compensation</mat-label>
+                      <input
+                        matInput
+                        required
+                        type="text"
+                        placeholder="Car Compensation"
+                        name="carCompensation"
+                        #carCompensation = "ngModel"
+                        ngModel>
+                        <mat-error>Required</mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Play Ground</mat-label>
+                      <input
+                        matInput
+                        required
+                        type="text"
+                        placeholder="Play Ground"
+                        name="playGround"
+                        #playGround = "ngModel"
+                        ngModel>
+                        <mat-error *ngIf="playGround.invalid"> Required </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+        </form>
+        <button class="btn btn-warning float-end" 
+                matStepperNext>Next</button>
+    </mat-step>
+    
+    <mat-step [editable]="true" [completed]="match.playersPlayed.length >= 2">
+        <ng-template matStepLabel>Select Players</ng-template>
+        <app-select-players [match]="match"></app-select-players>
+        <button mat-button matStepperNext class="btn btn-warning float-end m-2" (click)="playerCount()">Next</button>
+        <button mat-button matStepperPrevious class="btn btn-warning float-end m-2">Back</button>
+    </mat-step>
+
+    <mat-step [editable]="true">
+        <ng-template matStepLabel>Select Cars</ng-template>
+        <app-select-cars-in-match [match]="match"></app-select-cars-in-match>
+        <button mat-button matStepperNext class="btn btn-warning float-end m-2">Next</button>
+        <button mat-button matStepperPrevious class="btn btn-warning float-end m-2">Back</button>
+    </mat-step>
+
+    <mat-step>
+        <div *ngIf="calculate()"></div>
+        <ng-template matStepLabel>OverView</ng-template>
+        <app-match-preview [match]="match"></app-match-preview>
+        <button mat-button class="btn btn-warning float-end m-2" (click)="addMatch()">Submit</button>
+    </mat-step>
+</mat-stepper>

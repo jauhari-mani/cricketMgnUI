@@ -1,0 +1,29 @@
+<mat-card class="mat-elevation-z2" (click)="redirect()">
+    <div class="row">
+        <div class="col-6">
+             <mat-card-header>
+                 <img *ngIf="image != undefined && image.size != 18"  mat-card-sm-image [src]="profilePicture" alt="profile picture" >
+                 <img *ngIf="image == undefined || image.size == 18" mat-card-sm-image src="../assets/PT logo.jpeg" alt="">
+            </mat-card-header>
+        </div>
+        <div class="col-6">
+            <mat-card-header>
+                <mat-card-title>{{playerDetails.name}}</mat-card-title>
+                <mat-card-subtitle>{{playerDetails.phnNumber}}</mat-card-subtitle>
+            </mat-card-header>
+        </div>      
+    </div>
+    <div>
+        <mat-card-header>
+            <div class="row col-12 pt-2">
+                <div class="col-8">
+                    <mat-card-title>Balance : </mat-card-title>   
+                </div>
+                <div class="col-4 float-end">
+                    <mat-card-title *ngIf="wallet >= 0" class="text-success">{{wallet}}</mat-card-title>
+                    <mat-card-title *ngIf="wallet < 0" class="text-danger">{{wallet}}</mat-card-title>
+                </div>
+            </div>
+        </mat-card-header>
+    </div>  
+</mat-card>
